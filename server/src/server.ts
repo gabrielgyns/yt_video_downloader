@@ -6,6 +6,12 @@ const app = fastify();
 
 const PORT = process.env.PORT ?? 3333;
 
+app.register(require('fastify-cors'), {
+  // TODO: update this when front be in prod
+  origin: '*',
+  methods: ['GET', 'POST'],
+});
+
 app.get('/info/:urlCode', async (request, reply) => {
   const createSchema = z.object({
     urlCode: z.string(),
