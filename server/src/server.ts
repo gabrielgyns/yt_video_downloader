@@ -1,9 +1,10 @@
 import fastify from 'fastify';
-import ytdl from 'ytdl-core';
 import z from 'zod';
 import { downloadVideo, getVideoInfo } from './download';
 
 const app = fastify();
+
+const PORT = process.env.PORT ?? 3333;
 
 app.get('/info/:urlCode', async (request, reply) => {
   const createSchema = z.object({
@@ -33,8 +34,8 @@ app.post('/download', async (request, reply) => {
 
 app
   .listen({
-    port: 3333,
+    port: Number(PORT),
   })
   .then(() => {
-    console.log('🚀 HTTP server running on port 3333!');
+    console.log(`🚀 HTTP server running on port ${PORT}!`);
   });
