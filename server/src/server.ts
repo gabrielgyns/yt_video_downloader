@@ -1,4 +1,5 @@
 import fastify from 'fastify';
+import fastifyCors from '@fastify/cors';
 import z from 'zod';
 import { downloadVideo, getVideoInfo } from './download';
 
@@ -6,7 +7,7 @@ const app = fastify();
 
 const PORT = process.env.PORT ?? 3333;
 
-app.register(require('fastify-cors'), {
+app.register(fastifyCors, {
   // TODO: update this when front be in prod
   origin: '*',
   methods: ['GET', 'POST'],
